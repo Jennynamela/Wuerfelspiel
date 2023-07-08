@@ -1,0 +1,73 @@
+<div class="fixed left-0 top-0 min-h-screen min-w-screen">
+    <img src="assets/bg.png"
+            alt="logo von der Webseite"
+            width="2800"
+            height="1400"/>
+  
+  </div>
+  <div class="px-5 min-h-screen flex justify-content-center align-items-center">
+    <div class="border-1 surface-border surface-card border-round py-7 px-4 md:px-7 z-1">
+    
+  
+      <div class="mb-4">
+        <div class="text-900 text-xl font-bold mb-2">Willkommen beim Spiel</div>
+      </div>
+      <p>Willst du mit Computer spielen?</p>
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-6">
+          <p-radioButton name="spielerCathegory" value="Ja" label="Ja" [(ngModel)]="playerService.playWithComputer">
+          </p-radioButton>
+        </div>
+        <div class="field col-12 md:col-6">
+          <p-radioButton name="spielerCathegory" value="Nein" label="Nein" [(ngModel)]="playerService.playWithComputer">
+          </p-radioButton>
+        </div>
+      </div>
+  
+      <div *ngIf="playerService.playWithComputer==='Nein'" class="p-fluid p-formgrid grid">
+        <div class="field col-12">
+          <p-dropdown  [options]="playerCountOptions" [(ngModel)]="selectedPlayerCount" placeholder="Anzahl der Mitspieler" (onChange)="onPlayerCountChange()"></p-dropdown>
+        </div>
+      </div>
+  
+      <div class="p-fluid p-formgrid grid">
+        <div *ngIf="playerService.playWithComputer==='Ja'" class="field col-12">
+          <input type="text" pInputText placeholder='Dein Name' [(ngModel)]="playerService.myPlayer.name" />
+        </div>
+        <ng-template [ngIf]="playerService.playWithComputer==='Nein' && selectedPlayerCount!==undefined">
+          <div class="field col-12" *ngFor="let player of playerService.players; let i = index">
+            <input type="text" pInputText [(ngModel)]="player.name" placeholder="Spielername {{ i + 1 }}"/>
+          </div>
+        </ng-template>
+        
+  
+      </div>
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-12">
+          <p-dropdown  [options]="maxScoreOptions" [(ngModel)]="playerService.selectedMaxScore" placeholder="Die zu erreichende Punkte"></p-dropdown>
+        </div>
+      </div>
+      
+  
+  
+  
+      <div class="flex flex-column">
+         
+        <div class="flex flex-wrap gap-2 justify-content-between">
+          <button
+                  pButton
+                  pRipple
+                  label="Spiel"
+                  (click)="startGame()"
+                  [disabled]="!isFormValid()"
+                  class="flex-auto"
+                  [routerLink]="['/auth/verification']"
+          ></button>
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>
+  
+  
