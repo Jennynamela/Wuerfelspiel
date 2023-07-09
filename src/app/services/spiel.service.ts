@@ -27,6 +27,7 @@ export class SpielService {
     this.cpuPlayer = {name: 'Computer', score: 0};
     this.players = [];
     this.selectedMaxScore = undefined;
+    this.message = '';
   }
 
   shuffleSpieler()  {
