@@ -37,7 +37,7 @@ export class SpielComponent implements OnInit{
         }
         if(this.spielService.selectedMaxScore!==undefined && (this.spielService.myPlayer.score >= this.spielService.selectedMaxScore)){
           this.spielService.message = `${this.spielService.myPlayer.name}, du hast gewonnen!!`;
-          this.spielService.init();
+          this.spielService.gameOver = true;
           this.router.navigate(['/win']);
           
         }
@@ -57,7 +57,7 @@ export class SpielComponent implements OnInit{
         
         if(this.spielService.selectedMaxScore!==undefined && (this.spielService.cpuPlayer.score >= this.spielService.selectedMaxScore)){
           this.spielService.message = `${this.spielService.myPlayer.name}, du hast verloren!!!`;
-          this.spielService.init();
+          this.spielService.gameOver = true;
           this.router.navigate(['/lost']);
         }
         
@@ -81,8 +81,7 @@ export class SpielComponent implements OnInit{
 
         if(this.spielService.selectedMaxScore!==undefined && (this.spielService.players[this.indexSpieler].score >= this.spielService.selectedMaxScore)){
           this.spielService.message = `${this.spielService.players[this.indexSpieler].name}, du hast gewonnen!!`;
-
-          this.spielService.init();
+          this.spielService.gameOver = true;
           this.router.navigate(['/win']);
           
         }

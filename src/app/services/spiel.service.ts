@@ -16,6 +16,7 @@ export class SpielService {
   selectedMaxScore: number | undefined = undefined; 
   apiUrl = environment.apiUrl;
   message: string = '';
+  gameOver: boolean = false;
 
 
   constructor(private http: HttpClient) { }
@@ -28,6 +29,7 @@ export class SpielService {
     this.players = [];
     this.selectedMaxScore = undefined;
     this.message = '';
+    this.gameOver = false;
   }
 
   shuffleSpieler()  {

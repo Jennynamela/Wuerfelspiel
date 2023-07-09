@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpielService } from 'src/app/services/spiel.service';
 
@@ -7,13 +7,16 @@ import { SpielService } from 'src/app/services/spiel.service';
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.scss']
 })
-export class StartComponent {
+export class StartComponent implements OnInit{
   selectedPlayerCount: number | undefined = undefined; 
   playerCountOptions: number[] = [1, 2, 3]; 
   maxScoreOptions: number[] = [50, 100, 150]; 
 
   constructor(private router: Router, public playerService: SpielService) {
 
+  }
+  ngOnInit(): void {
+    this.playerService.init();
   }
 
   onPlayerCountChange(): void {
