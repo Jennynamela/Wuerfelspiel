@@ -29,36 +29,33 @@ export class SpielComponent implements OnInit, OnDestroy{
   wuerfeltMitCPU(){
 
     this.subscriptions.push(
-      this.spielService.getRandomNumbers().subscribe(numbers => {
-        if (numbers.length === 2) {
+      this.spielService.getRandomNumbersCPU().subscribe(numbers => {
+        if (numbers.length === 4) {
           const zufallszahl1 = numbers[0];
           const zufallszahl2 = numbers[1];
+          const cpuZufallszahl1  = numbers[2];
+          const cpuZufallszahl2 = numbers[3];
+
           this.punkte = zufallszahl1 + zufallszahl2;
           this.spielService.myPlayer.score += this.punkte;
+
+          this.cpuPunkte = cpuZufallszahl1 + cpuZufallszahl2;
+          this.spielService.cpuPlayer.score += this.cpuPunkte;
+
           this.wuerfel1 = "assets/"+zufallszahl1+".png";
           this.wuerfel2 = "assets/"+zufallszahl2+".png";
+
           if(zufallszahl1===zufallszahl2){
             this.messageService.add({severity:'success', summary:'Du hast einen Pasch gewürfelt', detail:'Du erhältst plus '+ (zufallszahl1 + zufallszahl2) + ' Punkte'});
             this.spielService.myPlayer.score += (zufallszahl1 + zufallszahl2);
           }
+
           if(this.spielService.selectedMaxScore!==undefined && (this.spielService.myPlayer.score >= this.spielService.selectedMaxScore)){
             this.spielService.message = `${this.spielService.myPlayer.name}, du hast gewonnen!!`;
             this.spielService.gameOver = true;
             this.router.navigate(['/win']);
-            
           }
-        }
-      })
-    );
-    
-    this.subscriptions.push(
-      this.spielService.getRandomNumbers().subscribe(numbers => {
-        if (numbers.length === 2) {
-          const cpuZufallszahl1  = numbers[0];
-          const cpuZufallszahl2 = numbers[1];
-          this.cpuPunkte = cpuZufallszahl1 + cpuZufallszahl2;
-          this.spielService.cpuPlayer.score += this.cpuPunkte;
-
+          
           if(cpuZufallszahl1===cpuZufallszahl2){
             this.messageService.add({severity:'warn', summary:'CPU hat einen Pasch gewürfelt', detail:'CPU erhält plus '+ (cpuZufallszahl1 + cpuZufallszahl2) + ' Punkte'});
             this.spielService.cpuPlayer.score += (cpuZufallszahl1 + cpuZufallszahl2);
@@ -69,7 +66,7 @@ export class SpielComponent implements OnInit, OnDestroy{
             this.spielService.gameOver = true;
             this.router.navigate(['/lost']);
           }
-          
+
         }
       })
     );

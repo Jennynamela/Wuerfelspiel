@@ -15,6 +15,7 @@ export class SpielService {
   players: Player[] = [];
   selectedMaxScore: number | undefined = undefined; 
   apiUrl = environment.apiUrl;
+  apiCPUUrl = environment.apiCPUUrl;
   message: string = '';
   gameOver: boolean = false;
 
@@ -38,6 +39,12 @@ export class SpielService {
 
   getRandomNumbers(): Observable<number[]> {
     return this.http.get(this.apiUrl, { responseType: 'text' }).pipe(
+      map(response => response.split('\n').filter(line => line !== '').map(Number))
+    );
+  }
+
+  getRandomNumbersCPU(): Observable<number[]> {
+    return this.http.get(this.apiCPUUrl, { responseType: 'text' }).pipe(
       map(response => response.split('\n').filter(line => line !== '').map(Number))
     );
   }
