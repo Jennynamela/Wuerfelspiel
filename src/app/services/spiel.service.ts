@@ -15,6 +15,7 @@ export class SpielService {
   players: Player[] = [];
   selectedMaxScore: number | undefined = undefined; 
   apiUrl = environment.apiUrl;
+  message: string = '';
 
 
   constructor(private http: HttpClient) { }

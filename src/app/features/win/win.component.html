@@ -1,0 +1,30 @@
+
+<div class="fixed left-0 top-0 min-h-screen min-w-screen">
+    <img src="assets/congra.png" alt="logo von der Webseite" width="2800" height="1400"/>
+  
+</div>
+<div class="px-5 min-h-screen flex justify-content-center align-items-center">
+    <div class="border-1 surface-border surface-card border-round py-7 px-4 md:px-7 z-1">
+        <div class="p-fluid p-formgrid grid">
+            <div class="field col-12">
+                <div class="flex justify-content-center">
+                    {{spielService.message}}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-column">
+         
+            <div class="flex flex-wrap gap-2 justify-content-between">
+              <button 
+                      pButton
+                      pRipple
+                      label="Zurück zum Hauptmenü"
+                      [routerLink]="['/spiel']"
+                      class="flex-auto"
+              ></button>
+            </div>
+    </div>
+
+</div>
+
+  

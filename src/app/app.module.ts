@@ -12,12 +12,18 @@ import { FormsModule } from '@angular/forms';
 import { StartComponent } from './features/start/start.component';
 import { SpielComponent } from './features/spiel/spiel.component';
 import { HttpClientModule } from '@angular/common/http';
+import { WinComponent } from './features/win/win.component';
+import { LostComponent } from './features/lost/lost.component';
+import { ToastModule } from 'primeng/toast';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
-    SpielComponent
+    SpielComponent,
+    WinComponent,
+    LostComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    DropdownModule
+    DropdownModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
